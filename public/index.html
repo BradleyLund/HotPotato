@@ -84,7 +84,13 @@
         }
 
         // TODO: Create a new WebSocket connection with the server using the ws protocol
-        const URL = "ws://localhost:" + PORT;
+        // const URL = "ws://localhost:" + PORT;
+
+        const URL =
+          window.location.protocol === "https:"
+            ? "wss://" + window.location.host + "/ws" // for secure websocket
+            : "ws://" + window.location.host + "/ws"; // for standard websocket
+
         wsClient = new WebSocket(URL);
         // TODO: Define the .onopen() handler
         wsClient.onopen = (event) => {
